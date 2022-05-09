@@ -1,5 +1,5 @@
 <template>
-  <h1>How is that pokémon?</h1>
+  <h1>Who is that pokémon?</h1>
   <PokemonPicture :pokemonId="4" :showPokemon='true' />
   <PokemonOptions :pokemons="pokemonArray"/>
 </template>
