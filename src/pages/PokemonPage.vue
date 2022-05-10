@@ -56,6 +56,7 @@ export default {
       this.showPokemon = false
       this.showAnswer = false
       this.pokemonArray = []
+      this.pokemon = null
       this.mixPokemonArray()
     }
   },
