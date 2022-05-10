@@ -3,7 +3,14 @@
   <div v-else>
     <h1>Who is that pokémon?</h1>
     <PokemonPicture :pokemonId="pokemon.id" :showPokemon='showPokemon' />
-    <PokemonOptions :pokemons="pokemonArray"/>
+    <PokemonOptions
+      :pokemons="pokemonArray"
+      @selection="checkAnswer" />
+
+    <template v-if="showAnswer">
+      <h2 class="fade-in">{{ message }}</h2>
+      <button @click="newGame">New Game</button>
+    </template>
   </div>
 </template>
 
@@ -22,7 +29,9 @@ export default {
     return {
       pokemonArray: [],
       pokemon: null,
-      showPokemon: false
+      showPokemon: false,
+      showAnswer: false,
+      message: ''
     }
   },
   methods: {
@@ -32,6 +41,22 @@ export default {
       const randomInt = Math.floor( Math.random() * 4 )
 
       this.pokemon = this.pokemonArray[ randomInt ]
+    },
+    checkAnswer(selectedId) {
+      this.showPokemon = true
+      this.showAnswer = true
+
+      if (selectedId === this.pokemon.id) {
+        this.message = `You're right, ${ this.pokemon.name }`
+      } else {
+        this.message = `Opss, it was ${ this.pokemon.name }`
+      }
+    },
+    newGame() {
+      this.showPokemon = false
+      this.showAnswer = false
+      this.pokemonArray = []
+      this.mixPokemonArray()
     }
   },
   mounted() {

@@ -3,6 +3,7 @@
     <ul>
       <li
         v-for="pokemon in pokemons"
+        @click="$emit('selection', pokemon.id)"
         :key="pokemon.id">{{ pokemon.name }}</li>
     </ul>
   </div>
