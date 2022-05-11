@@ -27,7 +27,7 @@ describe('PokemonOptions Component', () => {
     //     </ul>
     //   </div>
     // `)
-    expect( wrapper ).toMatchSnapshot()
+    expect( wrapper.html() ).toMatchSnapshot()
   })
 
   test('should show the 4 options properly', () => {
