@@ -62,5 +62,29 @@ describe('PokemonPage Component', () => {
 
     expect( pokemonOptions.attributes().pokemons ).toBeTruthy()
   })
+
+  test('tests on CheckAnswer', async() => {
+    const wrapper = shallowMount( PokemonPage, {
+      data() {
+        return {
+          pokemonArray: pokemons,
+          pokemon: pokemons[0],
+          showPokemon: false,
+          showAnswer: false,
+          message: ''
+        }
+      }
+    })
+
+    await wrapper.vm.checkAnswer(1)
+    console.log(wrapper.vm);
+
+    expect( wrapper.find('h2').exists() ).toBeTruthy()
+    expect( wrapper.vm.showPokemon ).toBeTruthy()
+    expect( wrapper.find('h2').text() ).toBe(`You're right, ${pokemons[0].name}`)
+
+    await wrapper.vm.checkAnswer(2)
+    expect( wrapper.vm.message ).toBe(`Opss, it was ${pokemons[0].name}`)
+  })
 })
 
